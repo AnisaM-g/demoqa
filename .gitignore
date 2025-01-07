@@ -1,0 +1,10 @@
+out
+.idea/
+build/
+.gradle/
+/gradle.properties
+/settings.gradle
+/HEADER
+/LICENSE
+/gradlew
+/gradlew.bat
