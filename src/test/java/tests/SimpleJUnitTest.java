@@ -1,3 +1,5 @@
+package tests;
+
 import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.Assertions;
@@ -11,7 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class SimpleJUnitTest {
     @Test
-    // Устанавливаем стратегию загрузки страницы
+        // Устанавливаем стратегию загрузки страницы
     void successfulSearchTest() {
         Configuration.pageLoadStrategy = "eager";
         // Открываем страницу
