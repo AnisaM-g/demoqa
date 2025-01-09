@@ -1,6 +1,8 @@
+package tests;
+
 import org.junit.jupiter.api.*;
 
-public class firstTests {
+public class ThirstTests {
     int result;
 
     @BeforeAll
