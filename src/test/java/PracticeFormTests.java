@@ -5,17 +5,23 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
-public class PracticeFormTests {@BeforeAll
-static void beforeAll() {
-    Configuration.browserSize = "1920x1080";
-}
+public class PracticeFormTests {
+    @BeforeAll
+    static void setupConfiguration() {
+        Configuration.browserSize = "1920x1080";
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.browser = "chrome";
+        Configuration.baseUrl = "https://demoqa.com/automation-practice-form";
+    }
 
     @Test
     void fillFormTest() {
-        open("https://demoqa.com/automation-practice-form");
+        open("");
+
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         $("#firstName").setValue("Иван");
         $("#lastName").setValue("Иванов");
@@ -48,17 +54,18 @@ static void beforeAll() {
 
         $("#submit").click();
 
-        // Ожидаем, что окно с таблицей данных откроется
         $("#example-modal-sizes-title-lg").shouldBe(visible);
         $(".table-responsive").shouldBe(visible);
 
-        // Проверяем содержимое таблицы
         $(".table-responsive").shouldHave(
                 text("Иван Иванов"),
                 text("ivanov@goole.com"),
                 text("Male"),
                 text("8919458178"),
-                text("03 March,1985"),
+                text("03 March,1985")
+        );
+
+        $(".table-responsive").shouldHave(
                 text("Maths, Biology"),
                 text("Reading"),
                 text("example.png"),
@@ -66,8 +73,6 @@ static void beforeAll() {
                 text("NCR Delhi")
         );
 
-        // Закрываем окно
         $("#closeLargeModal").click();
     }
 }
-
